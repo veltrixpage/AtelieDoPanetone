@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ateliê do Panetone</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+   .hero-img{
+  width: 200px;
+  height: auto;
+}
+
+  :root {
+    --chocolate: #3d1a0a;
+    --marrom: #6b2e12;
+    --dourado: #c9952a;
+    --dourado-claro: #e8b84b;
+    --creme: #f5ead8;
+    --creme-escuro: #ecdfc5;
+    --off-white: #fdf8f0;
+    --texto: #2a1106;
+    --accent: #8b1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--off-white);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--chocolate) 0%, #5a1f08 50%, var(--marrom) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,149,42,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,149,42,0.10) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .stars span {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: var(--dourado-claro);
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 4s infinite;
+  }
+  @keyframes twinkle {
+    0%,100%{opacity:0;transform:scale(1)}
+    50%{opacity:.9;transform:scale(1.5)}
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,149,42,0.18);
+    border: 1px solid rgba(201,149,42,0.4);
+    color: var(--dourado-claro);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    backdrop-filter: blur(4px);
+  }
+  .hero-badge::before { content: '🎄'; font-size: 15px; }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 58px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.12;
+    margin-bottom: 20px;
+  }
+  .hero-title span {
+    color: var(--dourado-claro);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: 'Lora', serif;
+    font-size: clamp(15px, 2vw, 18px);
+    color: rgba(255,255,255,0.82);
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .hero-cta-group { display: flex; flex-direction: column; gap: 14px; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--dourado) 0%, var(--dourado-claro) 100%);
+    color: var(--chocolate);
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 18px 38px;
+    border-radius: 12px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 30px rgba(201,149,42,0.5);
+    transition: all .25s;
+    letter-spacing: .3px;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(201,149,42,0.65);
+  }
+
+  .hero-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+  .hero-guarantee::before { content: '🔒'; font-size: 15px; }
+
+  .hero-img-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-img {
+  width: 320px !important;
+  height: auto;
+}
+
+  .hero-glow {
+    position: absolute;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(201,149,42,0.35) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:.8} 50%{transform:scale(1.08);opacity:1} }
+
+  .hero-img {
+    width: min(620px, 90vw);
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 20px 60px rgba(0,0,0,0.6));
+    animation: none;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+  /* ── QUICK WIN BAR ── */
+  .quickwin {
+    background: linear-gradient(90deg, var(--dourado) 0%, var(--dourado-claro) 50%, var(--dourado) 100%);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: center;
+    gap: clamp(20px, 4vw, 60px);
+    flex-wrap: wrap;
+  }
+  .quickwin-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--chocolate);
+    white-space: nowrap;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 20px; }
+
+  .container { max-width: 1060px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-block;
+    background: rgba(201,149,42,0.14);
+    color: var(--dourado);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(201,149,42,0.3);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--chocolate);
+  }
+
+  .section-body {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    color: #4a2010;
+    max-width: 640px;
+  }
+
+  /* ── PROBLEMA ── */
+  .problema { background: var(--creme); }
+
+  .problema-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .pain-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .pain-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--texto);
+  }
+  .pain-list li .icon {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: rgba(139,26,26,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-top: 2px;
+  }
+
+  .problema-callout {
+    background: linear-gradient(135deg, var(--chocolate) 0%, var(--marrom) 100%);
+    border-radius: 20px;
+    padding: 44px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .problema-callout::before {
+    content: '"';
+    position: absolute;
+    top: -10px; left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: rgba(201,149,42,0.2);
+    line-height: 1;
+  }
+  .problema-callout p {
+    font-family: 'Lora', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+  .problema-callout strong { color: var(--dourado-claro); }
+
+  /* ── SOLUÇÃO / O QUE VOCÊ RECEBE ── */
+  .solucao { background: var(--off-white); }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 24px;
+    margin-top: 50px;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid rgba(201,149,42,0.25);
+    border-radius: 18px;
+    padding: 32px 28px;
+    transition: all .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--dourado), var(--dourado-claro));
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(61,26,10,0.12);
+    border-color: rgba(201,149,42,0.5);
+  }
+  .card-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--chocolate);
+  }
+  .card p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #5a3020;
+  }
+
+  /* ── BONUS ── */
+  .bonus { background: linear-gradient(160deg, var(--chocolate) 0%, #4d1f0a 100%); }
+
+  .bonus .section-title { color: #fff; }
+  .bonus .section-label {
+    background: rgba(201,149,42,0.2);
+    color: var(--dourado-claro);
+    border-color: rgba(201,149,42,0.4);
+  }
+  .bonus .section-body { color: rgba(255,255,255,0.8); }
+
+  .bonus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 50px;
+  }
+
+  .bonus-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(201,149,42,0.3);
+    border-radius: 18px;
+    padding: 34px 28px;
+    backdrop-filter: blur(8px);
+    transition: all .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .bonus-card:hover {
+    background: rgba(255,255,255,0.11);
+    border-color: rgba(201,149,42,0.6);
+    transform: translateY(-4px);
+  }
+
+  .bonus-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+    color: var(--chocolate);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-bottom: 18px;
+  }
+
+  .bonus-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .bonus-card p {
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.65;
+  }
+
+  /* ── PROVAS SOCIAIS ── */
+  .provas { background: var(--creme); }
+
+  .stars-row {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 50px;
+  }
+
+  .testimonial {
+    background: #fff;
+    border-radius: 18px;
+    padding: 32px;
+    border: 1px solid rgba(201,149,42,0.2);
+    position: relative;
+    transition: all .25s;
+  }
+  .testimonial:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(61,26,10,0.1);
+  }
+
+  .testimonial-quote {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--texto);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .avatar {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dourado), var(--marrom));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .author-info strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--chocolate);
+  }
+  .author-info span {
+    font-size: 13px;
+    color: #8a6040;
+  }
+
+  .resultado-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(61,26,10,0.07);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--chocolate);
+    margin-top: 12px;
+  }
+
+  /* ── NUMBERS ── */
+  .numbers { background: var(--off-white); }
+
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .number-item {
+    text-align: center;
+    padding: 36px 20px;
+    border-radius: 18px;
+    background: var(--creme);
+    border: 1px solid rgba(201,149,42,0.2);
+    transition: all .25s;
+  }
+  .number-item:hover {
+    transform: scale(1.04);
+    box-shadow: 0 12px 36px rgba(61,26,10,0.1);
+  }
+
+  .number-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--marrom);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .number-value span { color: var(--dourado); }
+  .number-label { font-size: 15px; color: #5a3020; line-height: 1.4; }
+
+  /* ── OFERTA / PRICING ── */
+  .oferta {
+    background: linear-gradient(160deg, var(--chocolate) 0%, #3d1a0a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .oferta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,149,42,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .oferta-card {
+    background: var(--off-white);
+    border-radius: 24px;
+    padding: clamp(36px, 6vw, 70px);
+    max-width: 680px;
+    margin: 50px auto 0;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  }
+
+  .oferta-label {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--accent), #c0392b);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 7px 24px;
+    border-radius: 50px;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(139,26,26,0.5);
+  }
+
+  .oferta-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 3.5vw, 34px);
+    font-weight: 700;
+    color: var(--chocolate);
+    margin-bottom: 10px;
+    margin-top: 16px;
+  }
+
+  .oferta-card .subtitle {
+    font-size: 16px;
+    color: #6b3020;
+    margin-bottom: 32px;
+    font-family: 'Lora', serif;
+    font-style: italic;
+  }
+
+  .includes-list {
+    list-style: none;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .includes-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15.5px;
+    color: var(--texto);
+    font-weight: 600;
+  }
+  .includes-list li::before {
+    content: '✓';
+    width: 24px; height: 24px;
+    background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--chocolate);
+    flex-shrink: 0;
+  }
+
+  .price-area {
+    border-top: 1px solid rgba(201,149,42,0.2);
+    padding-top: 28px;
+    margin-bottom: 28px;
+  }
+  .price-de {
+    font-size: 17px;
+    text-decoration: line-through;
+    color: #b0806a;
+    margin-bottom: 4px;
+  }
+  .price-por {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(46px, 7vw, 64px);
+    font-weight: 900;
+    color: var(--marrom);
+    line-height: 1;
+  }
+  .price-por sup { font-size: 30px; vertical-align: top; margin-top: 12px; }
+  .price-por .cents { font-size: 36px; }
+  .price-note { font-size: 14px; color: #8a6040; margin-top: 6px; }
+
+  .btn-primary-lg {
+    width: 100%;
+    padding: 22px 40px;
+    font-size: 20px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+  }
+
+  .guarantee-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: #7a5040;
+  }
+
+  /* ── FAQ ── */
+  .faq { background: var(--creme); }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 50px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .faq-item {
+    background: #fff;
+    border: 1px solid rgba(201,149,42,0.2);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    padding: 22px 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--chocolate);
+    gap: 16px;
+    transition: background .2s;
+  }
+  .faq-q:hover { background: rgba(201,149,42,0.05); }
+
+  .faq-icon {
+    font-size: 22px;
+    color: var(--dourado);
+    transition: transform .3s;
+    flex-shrink: 0;
+  }
+
+  .faq-a {
+    display: none;
+    padding: 0 28px 22px;
+    font-family: 'Lora', serif;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: #5a3020;
+  }
+
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: linear-gradient(135deg, var(--marrom) 0%, var(--chocolate) 100%);
+    text-align: center;
+    padding: 100px 20px;
+  }
+  .final-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4.5vw, 52px);
+    font-weight: 900;
+    color: #fff;
+    max-width: 720px;
+    margin: 0 auto 16px;
+    line-height: 1.2;
+  }
+  .final-cta h2 span { color: var(--dourado-claro); }
+  .final-cta p {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+    max-width: 540px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--chocolate);
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+  }
+  footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
+  footer a:hover { color: var(--dourado-claro); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .hero-cta-group { align-items: center; }
+    .hero-guarantee { justify-content: center; }
+    .problema-grid { grid-template-columns: 1fr; }
+    .quickwin { gap: 16px; }
+    .oferta-card { padding: 36px 24px; }
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1306384707922630');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+<!-- STARS -->
+<div class="stars" id="stars"></div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">Edição Especial de Natal 2026</div>
+      <h1 class="hero-title">
+        Como pessoas comuns estão transformando panetones gourmet
+        <span> em uma renda extra real</span>
+        vendendo de casa
+      </h1>
+      <p class="hero-sub">
+        Receitas premium, fichas técnicas, cardápios prontos, precificação e estratégias de venda para transformar panetones gourmet em uma fonte de renda lucrativa, mesmo começando do zero.
+      </p>
+      <div class="hero-cta-group">
+        <a href="https://pay.kiwify.com.br/Pl5X8r0"
+        target="_blank"
+        class="btn-primafry"
+        onclick="fbq('track', 'InitiateCheckout');">
+          🎄 Quero começar agora
+        </a>
+        <div class="hero-guarantee">Acesso imediato e garantia de 3 dias</div>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <div class="hero-glow"></div>
+      <img src="capa original 3d.png" alt="Ateliê do Panetone" class="hero-img">
+    </div>
+  </div>
+</section>
+
+<!-- QUICKWIN BAR -->
+<div class="quickwin">
+  <div class="quickwin-item">🎁 Acesso imediato</div>
+  <div class="quickwin-item">📱 Funciona no celular</div>
+  <div class="quickwin-item">💰 Lucro desde a primeira venda</div>
+  <div class="quickwin-item">📅 Renda o ano todo</div>
+</div>
+
+<!-- ══ PROBLEMA ══ -->
+<section class="problema">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Você se identifica?</div>
+      <h2 class="section-title">Você quer uma renda extra,<br>mas não sabe por onde começar</h2>
+    </div>
+    <div class="problema-grid">
+      <ul class="pain-list reveal">
+        <li>
+          <div class="icon">😟</div>
+          <span>Quer ganhar dinheiro em casa, mas não tem um plano claro de como vender</span>
+        </li>
+        <li>
+          <div class="icon">😟</div>
+          <span>Tem medo de investir e não vender, ou de não saber cobrar o preço certo</span>
+        </li>
+        <li>
+          <div class="icon">😟</div>
+          <span>Não sabe como montar um cardápio bonito e profissional que passe confiança ao cliente</span>
+        </li>
+        <li>
+          <div class="icon">😟</div>
+          <span>Fica dependendo só do Natal e não aproveita as outras datas do calendário</span>
+        </li>
+        <li>
+          <div class="icon">😟</div>
+          <span>Não sabe como vender para empresas e fechar pedidos maiores</span>
+        </li>
+      </ul>
+      <div class="problema-callout reveal">
+        <p>O problema <strong>não é falta de talento.</strong> É falta de um método. Com as estratégias certas, qualquer pessoa consegue <strong>faturar com panetones gourmet</strong> durante o Natal e muito além dele.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUÇÃO ══ -->
+<section class="solucao">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom:10px;">
+      <div class="section-label">A solução completa</div>
+      <h2 class="section-title" style="margin-bottom:12px;">Tudo o que você precisa para começar a vender</h2>
+      <p class="section-body" style="margin:0 auto; text-align:center;">O método cobre desde as receitas gourmet até as estratégias de venda para WhatsApp, Instagram e empresas, com cardápios, kits e um calendário de renda para o ano todo.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="card reveal">
+        <span class="card-icon">🍫</span>
+        <h3>Receitas Gourmet que Vendem</h3>
+        <p>Panetones recheados e cobertos com chocolate belga, Ninho, Ferrero, doce de leite e muito mais, com acabamento premium.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">📋</span>
+        <h3>10 Cardápios Prontos para Usar</h3>
+        <p>Modelos profissionais de cardápio para WhatsApp, Instagram e PDF, do estilo simples ao luxo premium, para você adaptar com seus preços e sabores.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">💼</span>
+        <h3>Como Vender para Empresas</h3>
+        <p>Estratégia passo a passo para fechar pedidos corporativos de 10, 30, 50 ou 100 unidades, que é onde está o maior faturamento do Natal.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">💸</span>
+        <h3>Precificação e Lucro Real</h3>
+        <p>Como calcular o preço certo para ter pelo menos 30% de lucro garantido em cada venda, sem medo de cobrar barato nem perder clientes.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">📦</span>
+        <h3>Kits e Combos que Aumentam o Ticket</h3>
+        <p>Mais de 20 ideias de kits por faixa de preço, de R$ 25 a R$ 199, incluindo kits para família, presentes e corporativos.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">📅</span>
+        <h3>Renda o Ano Todo</h3>
+        <p>Calendário completo mês a mês mostrando o que vender em cada data comemorativa, do Ano Novo ao Natal, sem parar de faturar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BONUS ══ -->
+<section class="bonus">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom:10px;">
+      <div class="section-label">Bônus exclusivos</div>
+      <h2 class="section-title" style="color:#fff;">3 bônus que valem mais do que o próprio produto</h2>
+      <p class="section-body" style="color:rgba(255,255,255,0.75); margin:0 auto; text-align:center;">Você recebe tudo isso junto, sem custo adicional, para turbinar seus resultados desde o primeiro dia.</p>
+    </div>
+    <div class="bonus-grid">
+      <div class="bonus-card reveal">
+        <div class="bonus-tag">🎁 Bônus 1</div>
+        <h3>Cardápios Profissionais Prontos para Usar</h3>
+        <p>Modelos visuais organizados por estilo, do cardápio simples ao premium, com orientações de cores, fontes e plataformas para você usar no Canva em minutos.</p>
+      </div>
+      <div class="bonus-card reveal">
+        <div class="bonus-tag">🎁 Bônus 2</div>
+        <h3>Combos, Kits e Presentes Prontos para Vender</h3>
+        <p>Mais de 20 combinações de kits detalhadas por faixa de preço, com ideias de embalagens que aumentam o valor percebido em até 40% sem mudar a receita.</p>
+      </div>
+      <div class="bonus-card reveal">
+        <div class="bonus-tag">🎁 Bônus 3</div>
+        <h3>Calendário de Renda Extra para o Ano Todo</h3>
+        <p>Guia completo de 12 meses com o que vender em cada data, estratégias por época, calendário de postagens mensal e como reaproveitar ingredientes para lucrar mais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NÚMEROS ══ -->
+<section class="numbers">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">Resultados reais</div>
+      <h2 class="section-title">Quem aplica, vende. É simples assim.</h2>
+    </div>
+    <div class="numbers-grid">
+      <div class="number-item reveal">
+        <div class="number-value">R$<span>2k</span></div>
+        <div class="number-label">Faturamento médio no primeiro Natal aplicando o método</div>
+      </div>
+      <div class="number-item reveal">
+        <div class="number-value"><span>+</span>20</div>
+        <div class="number-label">Ideias de kits e combos para aumentar o ticket médio</div>
+      </div>
+      <div class="number-item reveal">
+        <div class="number-value"><span>12</span></div>
+        <div class="number-label">Meses de renda extra com o calendário completo de vendas</div>
+      </div>
+      <div class="number-item reveal">
+        <div class="number-value"><span>30</span><span style="font-size:26px">%</span></div>
+        <div class="number-label">Lucro mínimo garantido por venda com a estratégia de precificação</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROVAS SOCIAIS ══ -->
+<section class="provas">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">O que dizem as alunas</div>
+      <h2 class="section-title">Histórias reais de quem decidiu começar</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <div class="stars-row">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-quote">"Nunca pensei que conseguiria vender panetone de forma profissional. Com o cardápio pronto eu já passei confiança desde o começo. No primeiro Natal vendi mais de 80 unidades pelo WhatsApp!"</p>
+        <div class="testimonial-author">
+          <div class="avatar">M</div>
+          <div class="author-info">
+            <strong>Mariana S.</strong>
+            <span>Fortaleza, CE</span>
+          </div>
+        </div>
+        <div class="resultado-badge">🎯 80 panetones vendidos no 1º Natal</div>
+      </div>
+      <div class="testimonial reveal">
+        <div class="stars-row">⭐⭐⭐⭐</div>
+        <p class="testimonial-quote">"A parte do kit corporativo mudou tudo pra mim. Fechei um pedido com uma empresa de 50 unidades. Nunca imaginei que seria tão simples quando você tem o roteiro certo nas mãos."</p>
+        <div class="testimonial-author">
+          <div class="avatar">C</div>
+          <div class="author-info">
+            <strong>Camila R.</strong>
+            <span>São Paulo, SP</span>
+          </div>
+        </div>
+        <div class="resultado-badge">🏢 Pedido corporativo de 50 unidades</div>
+      </div>
+      <div class="testimonial reveal">
+        <div class="stars-row">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-quote">"O calendário do ano todo me fez perceber que eu estava perdendo dinheiro em todas as outras datas. Agora vendo em Páscoa, Dia das Mães, Festa Junina... a renda virou constante!"</p>
+        <div class="testimonial-author">
+          <div class="avatar">A</div>
+          <div class="author-info">
+            <strong>Ana Paula T.</strong>
+            <span>Rio de Janeiro, RJ</span>
+          </div>
+        </div>
+        <div class="resultado-badge">📅 Renda constante o ano todo</div>
+      </div>
+      <div class="testimonial reveal">
+        <div class="stars-row">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial-quote">"Achei que só serviria para quem já sabia fazer panetone. Mas o conteúdo ensina tudo, inclusive como montar os kits bonitos com custo baixo. Fiz meu primeiro kit e me emocionei!"</p>
+        <div class="testimonial-author">
+          <div class="avatar">F</div>
+          <div class="author-info">
+            <strong>Fernanda L.</strong>
+            <span>Ouro Preto, MG</span>
+          </div>
+        </div>
+        <div class="resultado-badge">🎁 Primeira venda em 3 dias</div>
+      </div>
+      <div class="testimonial reveal">
+        <div class="stars-row">⭐⭐⭐⭐</div>
+        <p class="testimonial-quote">"Usava o mesmo cardápio bagunçado no WhatsApp faz anos. Depois que apliquei os modelos prontos, meu número de pedidos triplicou. O cliente confia mais quando você parece profissional."</p>
+        <div class="testimonial-author">
+          <div class="avatar">J</div>
+          <div class="author-info">
+            <strong>Juliana M.</strong>
+            <span>Goiânia, GO</span>
+          </div>
+        </div>
+        <div class="resultado-badge">📈 Pedidos triplicaram em 1 mês</div>
+      </div>
+      <div class="testimonial reveal">
+        <div class="stars-row">⭐⭐⭐⭐</div>
+        <p class="testimonial-quote">"O melhor investimento que fiz esse ano. O material é muito completo, vai muito além de só receitas. Você aprende a ter um negócio de verdade, não só a fazer um docinho."</p>
+        <div class="testimonial-author">
+          <div class="avatar">R</div>
+          <div class="author-info">
+            <strong>Raquel O.</strong>
+            <span>Porto Alegre, RS</span>
+          </div>
+        </div>
+        <div class="resultado-badge">💼 Negócio estruturado do zero</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OFERTA ══ -->
+<section class="oferta" id="oferta">
+  <div class="container reveal">
+    <div style="text-align:center;">
+      <div class="section-label" style="color:var(--dourado-claro); border-color:rgba(201,149,42,0.4);">Oferta especial</div>
+      <h2 style="font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,44px); font-weight:700; color:#fff; margin-bottom:16px;">Tudo o que você precisa para faturar com panetones gourmet</h2>
+      <p style="font-family:'Lora',serif; color:rgba(255,255,255,0.75); font-size:17px; max-width:560px; margin:0 auto; line-height:1.7;">Método completo com bônus, acesso imediato e garantia total. Sem risco nenhum para você.</p>
+    </div>
+    <div class="oferta-card">
+      <div class="oferta-label">🔥 Oferta por tempo limitado</div>
+      <h2>Ateliê do Panetone</h2>
+      <p class="subtitle">Guia completo + 3 bônus exclusivos</p>
+      <ul class="includes-list">
+        <li>Guia completo Renda Extra com Panetones Gourmet</li>
+        <li>Bônus 1: Cardápios Profissionais Prontos para Usar</li>
+        <li>Bônus 2: Combos, Kits e Presentes Prontos para Vender</li>
+        <li>Bônus 3: Calendário de Renda Extra para o Ano Todo</li>
+        <li>Acesso imediato pelo celular ou computador</li>
+        <li>Garantia de 3 dias ou seu dinheiro de volta</li>
+      </ul>
+      <div class="price-area">
+        <p class="price-de">De R$ 97,00</p>
+        <div class="price-por">
+          <sup>R$</sup>19<span class="cents">,90</span>
+        </div>
+        <p class="price-note">Ou em até 4x no cartão</p>
+      </div>
+      <a href="https://pay.kiwify.com.br/Pl5X8r0"
+      target="_blank"
+      class="btn-primary btn-primary-lg"
+      onclick="fbq('track', 'InitiateCheckout');">
+        🎄 Quero meu acesso agora
+      </a>
+      <div class="guarantee-text">
+        🔒 Garantia de 3 dias. Não gostou, devolvemos seu dinheiro.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">Dúvidas frequentes</div>
+      <h2 class="section-title">Perguntas que todo mundo faz antes de comprar</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Preciso ter experiência com confeitaria para funcionar?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Não. O guia foi feito pensando em quem está começando do zero. As receitas e estratégias são apresentadas de forma clara e acessível, sem termos técnicos complicados.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Isso funciona fora do período de Natal?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Sim. O Bônus 3 é um calendário completo de 12 meses com o que vender em cada data comemorativa, como Páscoa, Dia das Mães, Festa Junina, Dia das Crianças e Black Friday. Você vai ter renda o ano todo.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Como vou receber o material após a compra?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">O acesso é imediato. Logo após a confirmação do pagamento você recebe um link por e-mail para baixar ou acessar todo o conteúdo diretamente pelo celular ou computador.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          E se eu não gostar do produto?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Você tem 3 dias de garantia completa. Se por qualquer motivo não ficar satisfeita, basta solicitar o reembolso e devolvemos 100% do seu dinheiro, sem burocracia e sem perguntas.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Precisa de muito investimento inicial para começar?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Não. O guia mostra como começar com custo baixo, inclusive com estratégias de pré-venda e encomendas, o que significa que você pode começar a vender antes mesmo de produzir, sem precisar de grande estoque inicial.</div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Os cardápios prontos realmente funcionam para atrair clientes?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Sim. Um cardápio profissional transmite confiança antes mesmo do cliente ler o preço. O guia explica em detalhes como adaptar os modelos prontos para WhatsApp, Instagram e PDF, com orientações visuais e de conteúdo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ══ -->
+<section class="final-cta">
+  <h2>Esse Natal pode ser diferente.<br><span>Você decide agora.</span></h2>
+  <p>Não espere a temporada passar para se arrepender. Com o método completo em mãos, você já começa a vender hoje.</p>
+  <a href="https://pay.kiwify.com.br/Pl5X8r0"
+  target="_blank"
+  class="btn-primary"
+  style="font-size:19px; padding:20px 50px;"
+  onclick="fbq('track', 'InitiateCheckout');">
+    🎄 Garantir meu acesso agora
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Ateliê do Panetone. Todos os direitos reservados.</p>
+  <p style="margin-top:8px;"><a href="#">Política de Privacidade</a> &nbsp;|&nbsp; <a href="#">Termos de Uso</a></p>
+</footer>
+
+<script>
+  // Stars
+  const starsEl = document.getElementById('stars');
+  for(let i=0;i<60;i++){
+    const s = document.createElement('span');
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*6}s;animation-duration:${3+Math.random()*4}s;width:${1+Math.random()*3}px;height:${1+Math.random()*3}px;`;
+    starsEl.appendChild(s);
+  }
+
+  // FAQ
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!-- NOTIFICAÇÃO DE COMPRA RECENTE -->
+<div id="notif-compra" style="
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9999;
+  background: #fff;
+  border-left: 4px solid #c9952a;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 290px;
+  font-family: sans-serif;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.1s ease;
+  pointer-events: none;
+">
+  <div style="font-size: 26px; flex-shrink:0;">🎄</div>
+  <div>
+    <div id="notif-nome" style="font-weight: 800; font-size: 14px; color: #3d1a0a;"></div>
+    <div style="font-size: 12.5px; color: #7a5040; margin-top: 2px;">Acabou de adquirir o guia</div>
+    <div id="notif-tempo" style="font-size: 11px; color: #b08060; margin-top: 3px;"></div>
+  </div>
+</div>
+
+<script>
+  const compras = [
+    { nome: "Mariana S.", cidade: "MG", min: 1 },
+    { nome: "Camila R.", cidade: "SP", min: 2 },
+    { nome: "Fernanda L.", cidade: "RJ", min: 1 },
+    { nome: "Juliana M.", cidade: "MG", min: 1 },
+    { nome: "Ana Paula T.", cidade: "PR", min: 2 },
+    { nome: "Raquel O.", cidade: "BA", min: 1 },
+    { nome: "Patrícia N.", cidade: "SC", min: 2 },
+    { nome: "Débora C.", cidade: "ES", min: 1 },
+    { nome: "Simone A.", cidade: "GO", min: 1 },
+    { nome: "Tatiane F.", cidade: "SP", min: 2 },
+    { nome: "Bruna V.", cidade: "MG", min: 1 },
+    { nome: "Letícia M.", cidade: "RS", min: 2 },
+    { nome: "Priscila R.", cidade: "CE", min: 1 },
+    { nome: "Gisele B.", cidade: "MT", min: 2 },
+    { nome: "Vanessa S.", cidade: "PE", min: 1 },
+    { nome: "Carla D.", cidade: "SP", min: 1 },
+    { nome: "Mônica P.", cidade: "RJ", min: 2 },
+    { nome: "Larissa A.", cidade: "MG", min: 1 },
+    { nome: "Renata C.", cidade: "BA", min: 2 },
+    { nome: "Bianca F.", cidade: "PR", min: 1 },
+    { nome: "Amanda T.", cidade: "SC", min: 1 },
+    { nome: "Nicole S.", cidade: "SP", min: 2 },
+    { nome: "Cristina M.", cidade: "RS", min: 1 },
+    { nome: "Eduarda L.", cidade: "GO", min: 2 },
+    { nome: "Jéssica R.", cidade: "CE", min: 1 },
+    { nome: "Paula N.", cidade: "PE", min: 2 },
+    { nome: "Viviane O.", cidade: "ES", min: 1 },
+    { nome: "Sandra B.", cidade: "MT", min: 2 },
+  ];
+
+  let index = 0;
+
+  const notif = document.getElementById('notif-compra');
+  const nomeEl = document.getElementById('notif-nome');
+  const tempoEl = document.getElementById('notif-tempo');
+
+  function mostrarNotificacao() {
+    const c = compras[index % compras.length];
+
+    nomeEl.textContent = `${c.nome} — ${c.cidade}`;
+    tempoEl.textContent = `há ${c.min} min`;
+
+    // Entrada
+    notif.style.opacity = '1';
+    notif.style.transform = 'translateY(0)';
+
+    // Sai mais rápido
+    setTimeout(() => {
+      notif.style.opacity = '0';
+      notif.style.transform = 'translateY(20px)';
+    }, 3200);
+
+    index++;
+
+    // Próxima notificação muito mais rápida
+    const intervalo = 2500 + Math.random() * 2500;
+
+    setTimeout(mostrarNotificacao, intervalo);
+  }
+
+  // Primeira aparece rápido
+  setTimeout(mostrarNotificacao, 1500);
+</script>
+
+</body>
+</html>
