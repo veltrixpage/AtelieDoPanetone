@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
- 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ateliê do Panetone</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1306384707922630');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 <style>
-
-   .hero-img{
-  width: 200px;
-  height: auto;
-}
-
   :root {
-    --chocolate: #3d1a0a;
+    --chocolate: #2a0f04;
     --marrom: #6b2e12;
     --dourado: #c9952a;
     --dourado-claro: #e8b84b;
     --creme: #f5ead8;
-    --creme-escuro: #ecdfc5;
     --off-white: #fdf8f0;
     --texto: #2a1106;
     --accent: #8b1a1a;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Nunito', sans-serif;
     background: var(--off-white);
@@ -36,140 +45,189 @@
     overflow-x: hidden;
   }
 
-  /* ── HERO ── */
+  /* ════════════════════════════
+     HERO — TOTALMENTE REFEITO
+  ════════════════════════════ */
   .hero {
-    background: linear-gradient(160deg, var(--chocolate) 0%, #5a1f08 50%, var(--marrom) 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding: 60px 20px;
-  }
+    padding: 80px 24px 60px;
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+    /* Gradiente diagonal rico: escuro na esquerda, quente na direita */
     background:
-      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,149,42,0.18) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,149,42,0.10) 0%, transparent 60%);
-    pointer-events: none;
+      radial-gradient(ellipse 55% 70% at 75% 55%, rgba(130,55,10,0.85) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 50% at 15% 85%, rgba(201,149,42,0.12) 0%, transparent 60%),
+      linear-gradient(135deg, #1a0803 0%, #2e0e06 35%, #4a1a08 65%, #3d1200 100%);
   }
 
-  .stars {
+  /* Partículas douradas de fundo */
+  .hero-particles {
     position: absolute;
     inset: 0;
     pointer-events: none;
     overflow: hidden;
   }
-  .stars span {
+  .hero-particles span {
     position: absolute;
-    width: 3px; height: 3px;
-    background: var(--dourado-claro);
     border-radius: 50%;
+    background: var(--dourado-claro);
     opacity: 0;
-    animation: twinkle 4s infinite;
+    animation: twinkle var(--dur, 4s) var(--delay, 0s) infinite;
   }
   @keyframes twinkle {
-    0%,100%{opacity:0;transform:scale(1)}
-    50%{opacity:.9;transform:scale(1.5)}
+    0%,100%{ opacity:0; transform:scale(0.8); }
+    50%{ opacity:0.85; transform:scale(1.4); }
+  }
+
+  /* Linha diagonal decorativa atrás da imagem */
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -60px; top: -80px;
+    width: 600px; height: 120%;
+    background: linear-gradient(135deg, rgba(201,149,42,0.07) 0%, transparent 60%);
+    transform: rotate(-8deg);
+    pointer-events: none;
   }
 
   .hero-inner {
-    max-width: 1100px;
+    max-width: 1160px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
     align-items: center;
     position: relative;
     z-index: 2;
+    width: 100%;
   }
+
+  /* ── Conteúdo esquerdo ── */
+  .hero-content { max-width: 580px; }
 
   .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(201,149,42,0.18);
-    border: 1px solid rgba(201,149,42,0.4);
+    background: rgba(201,149,42,0.15);
+    border: 1px solid rgba(201,149,42,0.45);
     color: var(--dourado-claro);
-    padding: 6px 16px;
+    padding: 7px 18px;
     border-radius: 50px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 22px;
-    backdrop-filter: blur(4px);
+    margin-bottom: 28px;
+    backdrop-filter: blur(6px);
   }
-  .hero-badge::before { content: '🎄'; font-size: 15px; }
 
+  /* Título com hierarquia visual clara */
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(34px, 5vw, 58px);
     font-weight: 900;
-    color: #fff;
-    line-height: 1.12;
-    margin-bottom: 20px;
+    line-height: 1.1;
+    margin-bottom: 24px;
   }
-  .hero-title span {
-    color: var(--dourado-claro);
+
+  .hero-title .linha-normal {
     display: block;
+    font-size: clamp(26px, 3.8vw, 48px);
+    color: rgba(255,255,255,0.92);
+    font-weight: 700;
+  }
+
+  .hero-title .linha-destaque {
+    display: block;
+    font-size: clamp(38px, 5.5vw, 70px);
+    color: var(--dourado-claro);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 40px rgba(232,184,75,0.35);
+  }
+
+  .hero-title .linha-final {
+    display: block;
+    font-size: clamp(24px, 3.4vw, 44px);
+    color: rgba(255,255,255,0.88);
+    font-weight: 700;
   }
 
   .hero-sub {
     font-family: 'Lora', serif;
-    font-size: clamp(15px, 2vw, 18px);
-    color: rgba(255,255,255,0.82);
-    line-height: 1.7;
-    margin-bottom: 36px;
+    font-size: clamp(15px, 1.8vw, 17.5px);
+    color: rgba(255,255,255,0.75);
+    line-height: 1.75;
+    margin-bottom: 40px;
+    max-width: 520px;
   }
 
-  .hero-cta-group { display: flex; flex-direction: column; gap: 14px; }
+  /* Grupo CTA */
+  .hero-cta-group { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: linear-gradient(135deg, var(--dourado) 0%, var(--dourado-claro) 100%);
-    color: var(--chocolate);
+    background: linear-gradient(135deg, #d4a030 0%, var(--dourado-claro) 50%, #d4a030 100%);
+    background-size: 200% 100%;
+    color: #1a0803;
     font-family: 'Nunito', sans-serif;
     font-size: 18px;
     font-weight: 800;
-    padding: 18px 38px;
-    border-radius: 12px;
+    padding: 20px 44px;
+    border-radius: 14px;
     text-decoration: none;
     border: none;
     cursor: pointer;
-    box-shadow: 0 6px 30px rgba(201,149,42,0.5);
-    transition: all .25s;
-    letter-spacing: .3px;
+    box-shadow: 0 8px 32px rgba(201,149,42,0.55), 0 2px 8px rgba(0,0,0,0.3);
+    transition: all .3s ease;
+    letter-spacing: .2px;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    max-width: 420px;
   }
-  .btn-primary::after {
+  .btn-primary::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 60%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, transparent 55%);
     pointer-events: none;
   }
   .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(201,149,42,0.65);
+    box-shadow: 0 14px 44px rgba(201,149,42,0.7), 0 4px 12px rgba(0,0,0,0.3);
+    background-position: right center;
   }
+  .btn-primary:active { transform: translateY(-1px); }
+
+  /* Sub-texto urgência embaixo do botão */
+  .btn-urgency {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-left: 4px;
+  }
+  .btn-urgency::before { content: '⏰'; font-size: 13px; }
 
   .hero-guarantee {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     font-size: 13px;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.6);
   }
-  .hero-guarantee::before { content: '🔒'; font-size: 15px; }
+  .hero-guarantee::before { content: '🔒'; font-size: 14px; }
 
+  /* ── Imagem direita ── */
   .hero-img-wrap {
     position: relative;
     display: flex;
@@ -177,65 +235,95 @@
     align-items: center;
   }
 
-  .hero-img {
-  width: 320px !important;
-  height: auto;
-}
-
+  /* Glow dourado por trás do livro — maior e mais nítido */
   .hero-glow {
     position: absolute;
-    width: 520px; height: 520px;
-    background: radial-gradient(circle, rgba(201,149,42,0.35) 0%, transparent 70%);
+    width: 480px; height: 480px;
+    background: radial-gradient(circle at 50% 55%,
+      rgba(201,149,42,0.45) 0%,
+      rgba(201,149,42,0.18) 35%,
+      transparent 70%);
     border-radius: 50%;
-    animation: pulse 3s ease-in-out infinite;
+    animation: glow-pulse 3.5s ease-in-out infinite;
+    pointer-events: none;
   }
-  @keyframes pulse { 0%,100%{transform:scale(1);opacity:.8} 50%{transform:scale(1.08);opacity:1} }
+  @keyframes glow-pulse {
+    0%,100%{ transform:scale(1); opacity:.85; }
+    50%{ transform:scale(1.1); opacity:1; }
+  }
+
+  /* Anel decorativo */
+  .hero-ring {
+    position: absolute;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,149,42,0.2);
+    animation: ring-spin 20s linear infinite;
+    pointer-events: none;
+  }
+  .hero-ring::after {
+    content: '';
+    position: absolute;
+    top: -4px; left: 50%;
+    width: 8px; height: 8px;
+    background: var(--dourado-claro);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px var(--dourado-claro);
+  }
+  @keyframes ring-spin { from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
 
   .hero-img {
-    width: min(620px, 90vw);
+    width: min(400px, 85vw);
     position: relative;
     z-index: 2;
-    filter: drop-shadow(0 20px 60px rgba(0,0,0,0.6));
-    animation: none;
+    filter:
+      drop-shadow(0 30px 60px rgba(0,0,0,0.7))
+      drop-shadow(0 0 30px rgba(201,149,42,0.2));
+    animation: book-float 5s ease-in-out infinite;
   }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  @keyframes book-float {
+    0%,100%{ transform: translateY(0) rotate(-1deg); }
+    50%{ transform: translateY(-14px) rotate(1deg); }
+  }
 
   /* ── QUICK WIN BAR ── */
   .quickwin {
-    background: linear-gradient(90deg, var(--dourado) 0%, var(--dourado-claro) 50%, var(--dourado) 100%);
+    background: linear-gradient(90deg, #b8831f 0%, var(--dourado-claro) 50%, #b8831f 100%);
     padding: 14px 20px;
     display: flex;
     justify-content: center;
-    gap: clamp(20px, 4vw, 60px);
+    gap: clamp(16px, 4vw, 60px);
     flex-wrap: wrap;
   }
   .quickwin-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     font-weight: 800;
-    font-size: 14px;
-    color: var(--chocolate);
+    font-size: 13.5px;
+    color: #1a0803;
     white-space: nowrap;
   }
 
-  /* ── SECTIONS ── */
+  /* ════════════════════════
+     SECTIONS GERAIS
+  ════════════════════════ */
   section { padding: 90px 20px; }
-
   .container { max-width: 1060px; margin: 0 auto; }
 
   .section-label {
     display: inline-block;
-    background: rgba(201,149,42,0.14);
+    background: rgba(201,149,42,0.13);
     color: var(--dourado);
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
     padding: 5px 14px;
     border-radius: 50px;
     margin-bottom: 16px;
-    border: 1px solid rgba(201,149,42,0.3);
+    border: 1px solid rgba(201,149,42,0.28);
   }
 
   .section-title {
@@ -301,7 +389,7 @@
     top: -10px; left: 20px;
     font-family: 'Playfair Display', serif;
     font-size: 120px;
-    color: rgba(201,149,42,0.2);
+    color: rgba(201,149,42,0.18);
     line-height: 1;
   }
   .problema-callout p {
@@ -313,7 +401,7 @@
   }
   .problema-callout strong { color: var(--dourado-claro); }
 
-  /* ── SOLUÇÃO / O QUE VOCÊ RECEBE ── */
+  /* ── SOLUÇÃO ── */
   .solucao { background: var(--off-white); }
 
   .cards-grid {
@@ -325,7 +413,7 @@
 
   .card {
     background: #fff;
-    border: 1px solid rgba(201,149,42,0.25);
+    border: 1px solid rgba(201,149,42,0.22);
     border-radius: 18px;
     padding: 32px 28px;
     transition: all .25s;
@@ -342,13 +430,9 @@
   .card:hover {
     transform: translateY(-6px);
     box-shadow: 0 20px 50px rgba(61,26,10,0.12);
-    border-color: rgba(201,149,42,0.5);
+    border-color: rgba(201,149,42,0.45);
   }
-  .card-icon {
-    font-size: 36px;
-    margin-bottom: 16px;
-    display: block;
-  }
+  .card-icon { font-size: 36px; margin-bottom: 16px; display: block; }
   .card h3 {
     font-family: 'Playfair Display', serif;
     font-size: 20px;
@@ -356,22 +440,16 @@
     margin-bottom: 10px;
     color: var(--chocolate);
   }
-  .card p {
-    font-size: 14.5px;
-    line-height: 1.6;
-    color: #5a3020;
-  }
+  .card p { font-size: 14.5px; line-height: 1.6; color: #5a3020; }
 
   /* ── BONUS ── */
-  .bonus { background: linear-gradient(160deg, var(--chocolate) 0%, #4d1f0a 100%); }
-
+  .bonus { background: linear-gradient(160deg, var(--chocolate) 0%, #3a1508 100%); }
   .bonus .section-title { color: #fff; }
   .bonus .section-label {
-    background: rgba(201,149,42,0.2);
+    background: rgba(201,149,42,0.18);
     color: var(--dourado-claro);
-    border-color: rgba(201,149,42,0.4);
+    border-color: rgba(201,149,42,0.38);
   }
-  .bonus .section-body { color: rgba(255,255,255,0.8); }
 
   .bonus-grid {
     display: grid;
@@ -381,18 +459,16 @@
   }
 
   .bonus-card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(201,149,42,0.3);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,149,42,0.28);
     border-radius: 18px;
     padding: 34px 28px;
     backdrop-filter: blur(8px);
     transition: all .25s;
-    position: relative;
-    overflow: hidden;
   }
   .bonus-card:hover {
-    background: rgba(255,255,255,0.11);
-    border-color: rgba(201,149,42,0.6);
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(201,149,42,0.55);
     transform: translateY(-4px);
   }
 
@@ -419,21 +495,12 @@
     margin-bottom: 12px;
     line-height: 1.3;
   }
-  .bonus-card p {
-    font-size: 14.5px;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.65;
-  }
+  .bonus-card p { font-size: 14.5px; color: rgba(255,255,255,0.7); line-height: 1.65; }
 
   /* ── PROVAS SOCIAIS ── */
   .provas { background: var(--creme); }
 
-  .stars-row {
-    display: flex;
-    gap: 3px;
-    margin-bottom: 12px;
-    font-size: 18px;
-  }
+  .stars-row { display: flex; gap: 3px; margin-bottom: 12px; font-size: 18px; }
 
   .testimonials-grid {
     display: grid;
@@ -446,8 +513,7 @@
     background: #fff;
     border-radius: 18px;
     padding: 32px;
-    border: 1px solid rgba(201,149,42,0.2);
-    position: relative;
+    border: 1px solid rgba(201,149,42,0.18);
     transition: all .25s;
   }
   .testimonial:hover {
@@ -464,11 +530,7 @@
     font-style: italic;
   }
 
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
   .avatar {
     width: 46px; height: 46px;
     border-radius: 50%;
@@ -481,16 +543,8 @@
     color: #fff;
     flex-shrink: 0;
   }
-  .author-info strong {
-    display: block;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--chocolate);
-  }
-  .author-info span {
-    font-size: 13px;
-    color: #8a6040;
-  }
+  .author-info strong { display: block; font-size: 15px; font-weight: 700; color: var(--chocolate); }
+  .author-info span { font-size: 13px; color: #8a6040; }
 
   .resultado-badge {
     display: inline-flex;
@@ -520,7 +574,7 @@
     padding: 36px 20px;
     border-radius: 18px;
     background: var(--creme);
-    border: 1px solid rgba(201,149,42,0.2);
+    border: 1px solid rgba(201,149,42,0.18);
     transition: all .25s;
   }
   .number-item:hover {
@@ -539,9 +593,9 @@
   .number-value span { color: var(--dourado); }
   .number-label { font-size: 15px; color: #5a3020; line-height: 1.4; }
 
-  /* ── OFERTA / PRICING ── */
+  /* ── OFERTA ── */
   .oferta {
-    background: linear-gradient(160deg, var(--chocolate) 0%, #3d1a0a 100%);
+    background: linear-gradient(160deg, var(--chocolate) 0%, #2a0c02 100%);
     position: relative;
     overflow: hidden;
   }
@@ -549,7 +603,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,149,42,0.15) 0%, transparent 70%);
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,149,42,0.13) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -561,7 +615,7 @@
     margin: 50px auto 0;
     text-align: center;
     position: relative;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
   }
 
   .oferta-label {
@@ -633,12 +687,7 @@
     padding-top: 28px;
     margin-bottom: 28px;
   }
-  .price-de {
-    font-size: 17px;
-    text-decoration: line-through;
-    color: #b0806a;
-    margin-bottom: 4px;
-  }
+  .price-de { font-size: 17px; text-decoration: line-through; color: #b0806a; margin-bottom: 4px; }
   .price-por {
     font-family: 'Playfair Display', serif;
     font-size: clamp(46px, 7vw, 64px);
@@ -656,6 +705,7 @@
     font-size: 20px;
     border-radius: 14px;
     margin-bottom: 16px;
+    max-width: 100%;
   }
 
   .guarantee-text {
@@ -682,7 +732,7 @@
 
   .faq-item {
     background: #fff;
-    border: 1px solid rgba(201,149,42,0.2);
+    border: 1px solid rgba(201,149,42,0.18);
     border-radius: 14px;
     overflow: hidden;
   }
@@ -744,7 +794,7 @@
   .final-cta p {
     font-family: 'Lora', serif;
     font-size: 18px;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.78);
     max-width: 540px;
     margin: 0 auto 40px;
     line-height: 1.7;
@@ -756,82 +806,77 @@
     text-align: center;
     padding: 30px 20px;
     font-size: 13px;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.4);
   }
-  footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
   footer a:hover { color: var(--dourado-claro); }
 
   /* ── RESPONSIVE ── */
-  @media(max-width: 768px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+  @media(max-width: 860px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 50px;
+    }
+    .hero-img-wrap { order: -1; }
+    .hero-content { max-width: 100%; }
     .hero-cta-group { align-items: center; }
     .hero-guarantee { justify-content: center; }
+    .btn-urgency { justify-content: center; }
+    .hero-sub { margin-left: auto; margin-right: auto; }
+    .hero-ring { width: 300px; height: 300px; }
+    .hero-glow { width: 320px; height: 320px; }
     .problema-grid { grid-template-columns: 1fr; }
-    .quickwin { gap: 16px; }
+    .quickwin { gap: 14px; }
     .oferta-card { padding: 36px 24px; }
   }
 
   /* ── SCROLL ANIMATIONS ── */
   .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity .7s ease, transform .7s ease;
+    transform: translateY(28px);
+    transition: opacity .65s ease, transform .65s ease;
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
-
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1306384707922630');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
 </head>
 <body>
 
-<!-- STARS -->
-<div class="stars" id="stars"></div>
-
 <!-- ══ HERO ══ -->
 <section class="hero">
+  <div class="hero-particles" id="particles"></div>
+
   <div class="hero-inner">
+    <!-- LADO ESQUERDO: texto -->
     <div class="hero-content">
-      <div class="hero-badge">Edição Especial de Natal 2026</div>
+      <div class="hero-badge">🎄 Edição Especial de Natal 2026</div>
+
       <h1 class="hero-title">
-        Como pessoas comuns estão transformando panetones gourmet
-        <span> em uma renda extra real</span>
-        vendendo de casa
+        <span class="linha-normal">Como pessoas comuns estão</span>
+        <span class="linha-destaque">transformando<br>panetones gourmet</span>
+        <span class="linha-final">em uma renda extra real<br>vendendo de casa</span>
       </h1>
+
       <p class="hero-sub">
         Receitas premium, fichas técnicas, cardápios prontos, precificação e estratégias de venda para transformar panetones gourmet em uma fonte de renda lucrativa, mesmo começando do zero.
       </p>
+
       <div class="hero-cta-group">
         <a href="https://pay.kiwify.com.br/Pl5X8r0"
-        target="_blank"
-        class="btn-primary"
-        onclick="fbq('track', 'InitiateCheckout');">
+           target="_blank"
+           class="btn-primary"
+           onclick="fbq('track', 'InitiateCheckout');">
           🎄 Quero começar agora
         </a>
+        <div class="btn-urgency">Oferta por tempo limitado. Não perca!</div>
         <div class="hero-guarantee">Acesso imediato e garantia de 3 dias</div>
       </div>
     </div>
+
+    <!-- LADO DIREITO: imagem -->
     <div class="hero-img-wrap">
       <div class="hero-glow"></div>
+      <div class="hero-ring"></div>
       <img src="capa original 3d.png" alt="Ateliê do Panetone" class="hero-img">
     </div>
   </div>
@@ -931,7 +976,7 @@ src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
     <div class="reveal" style="text-align:center; margin-bottom:10px;">
       <div class="section-label">Bônus exclusivos</div>
       <h2 class="section-title" style="color:#fff;">3 bônus que valem mais do que o próprio produto</h2>
-      <p class="section-body" style="color:rgba(255,255,255,0.75); margin:0 auto; text-align:center;">Você recebe tudo isso junto, sem custo adicional, para turbinar seus resultados desde o primeiro dia.</p>
+      <p class="section-body" style="color:rgba(255,255,255,0.72); margin:0 auto; text-align:center;">Você recebe tudo isso junto, sem custo adicional, para turbinar seus resultados desde o primeiro dia.</p>
     </div>
     <div class="bonus-grid">
       <div class="bonus-card reveal">
@@ -1069,9 +1114,9 @@ src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
 <section class="oferta" id="oferta">
   <div class="container reveal">
     <div style="text-align:center;">
-      <div class="section-label" style="color:var(--dourado-claro); border-color:rgba(201,149,42,0.4);">Oferta especial</div>
+      <div class="section-label" style="color:var(--dourado-claro); border-color:rgba(201,149,42,0.38);">Oferta especial</div>
       <h2 style="font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,44px); font-weight:700; color:#fff; margin-bottom:16px;">Tudo o que você precisa para faturar com panetones gourmet</h2>
-      <p style="font-family:'Lora',serif; color:rgba(255,255,255,0.75); font-size:17px; max-width:560px; margin:0 auto; line-height:1.7;">Método completo com bônus, acesso imediato e garantia total. Sem risco nenhum para você.</p>
+      <p style="font-family:'Lora',serif; color:rgba(255,255,255,0.72); font-size:17px; max-width:560px; margin:0 auto; line-height:1.7;">Método completo com bônus, acesso imediato e garantia total. Sem risco nenhum para você.</p>
     </div>
     <div class="oferta-card">
       <div class="oferta-label">🔥 Oferta por tempo limitado</div>
@@ -1093,9 +1138,9 @@ src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
         <p class="price-note">Ou em até 4x no cartão</p>
       </div>
       <a href="https://pay.kiwify.com.br/Pl5X8r0"
-      target="_blank"
-      class="btn-primary btn-primary-lg"
-      onclick="fbq('track', 'InitiateCheckout');">
+         target="_blank"
+         class="btn-primary btn-primary-lg"
+         onclick="fbq('track', 'InitiateCheckout');">
         🎄 Quero meu acesso agora
       </a>
       <div class="guarantee-text">
@@ -1164,10 +1209,10 @@ src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
   <h2>Esse Natal pode ser diferente.<br><span>Você decide agora.</span></h2>
   <p>Não espere a temporada passar para se arrepender. Com o método completo em mãos, você já começa a vender hoje.</p>
   <a href="https://pay.kiwify.com.br/Pl5X8r0"
-  target="_blank"
-  class="btn-primary"
-  style="font-size:19px; padding:20px 50px;"
-  onclick="fbq('track', 'InitiateCheckout');">
+     target="_blank"
+     class="btn-primary"
+     style="font-size:19px; padding:20px 50px; max-width:420px;"
+     onclick="fbq('track', 'InitiateCheckout');">
     🎄 Garantir meu acesso agora
   </a>
 </section>
@@ -1178,35 +1223,7 @@ src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
   <p style="margin-top:8px;"><a href="#">Política de Privacidade</a> &nbsp;|&nbsp; <a href="#">Termos de Uso</a></p>
 </footer>
 
-<script>
-  // Stars
-  const starsEl = document.getElementById('stars');
-  for(let i=0;i<60;i++){
-    const s = document.createElement('span');
-    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*6}s;animation-duration:${3+Math.random()*4}s;width:${1+Math.random()*3}px;height:${1+Math.random()*3}px;`;
-    starsEl.appendChild(s);
-  }
-
-  // FAQ
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    item.classList.toggle('open');
-  }
-
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-
-<!-- NOTIFICAÇÃO DE COMPRA RECENTE -->
+<!-- ══ NOTIFICAÇÃO DE COMPRA ══ -->
 <div id="notif-compra" style="
   position: fixed;
   bottom: 24px;
@@ -1224,7 +1241,7 @@ src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
   font-family: sans-serif;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.1s ease;
+  transition: all 0.35s ease;
   pointer-events: none;
 ">
   <div style="font-size: 26px; flex-shrink:0;">🎄</div>
@@ -1236,6 +1253,36 @@ src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
 </div>
 
 <script>
+  /* ── Partículas no hero ── */
+  const particlesEl = document.getElementById('particles');
+  for(let i = 0; i < 55; i++){
+    const s = document.createElement('span');
+    const size = 1.5 + Math.random() * 3;
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      width:${size}px;
+      height:${size}px;
+      --dur:${3 + Math.random()*5}s;
+      --delay:${Math.random()*7}s;
+    `;
+    particlesEl.appendChild(s);
+  }
+
+  /* ── FAQ ── */
+  function toggleFaq(btn) {
+    btn.closest('.faq-item').classList.toggle('open');
+  }
+
+  /* ── Scroll reveal ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Notificação de compra ── */
   const compras = [
     { nome: "Mariana S.", cidade: "MG", min: 1 },
     { nome: "Camila R.", cidade: "SP", min: 2 },
@@ -1260,46 +1307,32 @@ src="https://www.facebook.com/tr?id=1306384707922630&ev=PageView&noscript=1"
     { nome: "Amanda T.", cidade: "SC", min: 1 },
     { nome: "Nicole S.", cidade: "SP", min: 2 },
     { nome: "Cristina M.", cidade: "RS", min: 1 },
-    { nome: "Eduarda L.", cidade: "GO", min: 2 },
-    { nome: "Jéssica R.", cidade: "CE", min: 1 },
-    { nome: "Paula N.", cidade: "PE", min: 2 },
-    { nome: "Viviane O.", cidade: "ES", min: 1 },
     { nome: "Sandra B.", cidade: "MT", min: 2 },
   ];
 
-  let index = 0;
-
-  const notif = document.getElementById('notif-compra');
-  const nomeEl = document.getElementById('notif-nome');
-  const tempoEl = document.getElementById('notif-tempo');
+  let notifIndex = 0;
+  const notif    = document.getElementById('notif-compra');
+  const nomeEl   = document.getElementById('notif-nome');
+  const tempoEl  = document.getElementById('notif-tempo');
 
   function mostrarNotificacao() {
-    const c = compras[index % compras.length];
-
-    nomeEl.textContent = `${c.nome} — ${c.cidade}`;
+    const c = compras[notifIndex % compras.length];
+    nomeEl.textContent  = `${c.nome} — ${c.cidade}`;
     tempoEl.textContent = `há ${c.min} min`;
 
-    // Entrada
-    notif.style.opacity = '1';
+    notif.style.opacity   = '1';
     notif.style.transform = 'translateY(0)';
 
-    // Sai mais rápido
     setTimeout(() => {
-      notif.style.opacity = '0';
+      notif.style.opacity   = '0';
       notif.style.transform = 'translateY(20px)';
-    }, 3200);
+    }, 3500);
 
-    index++;
-
-    // Próxima notificação muito mais rápida
-    const intervalo = 2500 + Math.random() * 2500;
-
-    setTimeout(mostrarNotificacao, intervalo);
+    notifIndex++;
+    setTimeout(mostrarNotificacao, 3500 + 3000 + Math.random() * 3000);
   }
 
-  // Primeira aparece rápido
-  setTimeout(mostrarNotificacao, 1500);
+  setTimeout(mostrarNotificacao, 2000);
 </script>
-
 </body>
 </html>
